@@ -8,7 +8,7 @@
 
 <div style = "margin-top: 2%; margin-bottom: 5%">
     <mat-card>
-        <p-table [columns]="cols" [value]="response" [scrollable]="true"  styleClass="p-datatable-gridlines" [showCurrentPageReport]="true" [paginator]="true" [rows]="15" (onPage)="paginate($event)" scrollHeight="400px" scrollWidth="400px" [resizableColumns]="true" [autoLayout]="true">
+        <p-table [columns]="cols" style="margin-top: 1%;"[value]="response" [scrollable]="true"  styleClass="p-datatable-gridlines" [showCurrentPageReport]="true" [paginator]="true" [rows]="15" (onPage)="paginate($event)" scrollHeight="400px" scrollWidth="400px" [resizableColumns]="true" [autoLayout]="true">
             <ng-template pTemplate="caption" style = "margin-bottom: 2%;">
                 History Report
             </ng-template>
