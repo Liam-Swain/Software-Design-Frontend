@@ -11,6 +11,8 @@ import { ClientRegistrationComponent } from './client-registration/client-regist
 import { ClientProfileComponent } from './client-profile/client-profile.component';
 import { FuelQuoteComponent } from './fuel-quote/fuel-quote.component';
 import { FuelHistoryComponent } from './fuel-history/fuel-history.component'
+import { MatCardModule } from "@angular/material/card";
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { FuelHistoryComponent } from './fuel-history/fuel-history.component'
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCardModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
