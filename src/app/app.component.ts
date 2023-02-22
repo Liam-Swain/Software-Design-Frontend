@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'software-design';
+  public isMenuOpen: boolean = false;
+
+  showPage() {
+    
+  }
+
+  constructor() {}
+
+  ngOnInit(): void {
+
+  }
+
 }

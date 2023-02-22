@@ -1,16 +1,33 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button'
+import {MatIconModule} from '@angular/material/icon'
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { ClientRegistrationComponent } from './client-registration/client-registration.component';
+import { ClientProfileComponent } from './client-profile/client-profile.component';
+import { FuelQuoteComponent } from './fuel-quote/fuel-quote.component';
+import { FuelHistoryComponent } from './fuel-history/fuel-history.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    ClientRegistrationComponent,
+    ClientProfileComponent,
+    FuelQuoteComponent,
+    FuelHistoryComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
