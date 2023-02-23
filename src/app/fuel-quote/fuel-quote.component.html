@@ -14,26 +14,30 @@
         
         <label for = "deliveryDate">Delivery Date:
             </label><br>
-        <input [matDatepicker]="basicDatepicker" required = "required">
-        <br>
-            <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+        <input type="date" required = "required">
+        <br><br>
+            
+            <!--seems I do not need this special date selector as the default is better-->
+            <!--<mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #basicDatepicker></mat-datepicker>
-        <br>
+            <br>-->
         
         <button type="submit" 
         style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77);"> Submit 
         </button>
         <br><br>
 
+        <!--This will be pulled from Client Info eventually-->
         <label for = "address">Adress:
         </label><br>
         <p>8088 Otter Trail Houston TX 77494</p>
 
-
+        <!--This will be calculated when backend is implimented-->
         <label for = "pricePerGallon">Price:
         </label><br>
         <p>$2.50/gallon</p>
-
+        
+        <!--This will be calculated when backend is implimented-->
         <label for = "priceTotal">Total Price:
         </label>
         <p>$2050</p>

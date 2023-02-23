@@ -5,22 +5,28 @@
 <body>
     <h3>Login</h3>
 
+    <!--Username entry-->
     <form>
         <label for = "username">Username:
     </label><br>
         <input type="text" id="username" required = "required" pattern="[A-Za-z1-9]" 
         title="Only letters or numbers">
     <br>
+
+    <!--Password entry-->
         <label for = "password">Password:
     </label><br>
         <input type="password" id="password" required="required" pattern=.{8,} 
             title="must be longer than 8 characters" >
-    <br>
-    <br>
+    <br><br>
+
+    <!--Submit-->
         <button type="submit" 
             style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77);"> Submit 
         </button>
         <br>
+    
+    <!--Link to registry page-->
         <a href="http://localhost:4200/client-registration">Need to register? Click here.</a>
     </form>
 
