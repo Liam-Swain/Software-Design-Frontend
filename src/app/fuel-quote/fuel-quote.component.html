@@ -14,13 +14,21 @@
         
         <label for = "deliveryDate">Delivery Date:
             </label><br>
-        <input type="text" id="deliveryDate" required = "required" pattern="[A-Za-z1-9]" 
-        title=" ">
+        <input [matDatepicker]="basicDatepicker" required = "required">
+        <br>
+            <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #basicDatepicker></mat-datepicker>
+        <br>
+        
+        <button type="submit" 
+        style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77);"> Submit 
+        </button>
         <br><br>
 
         <label for = "address">Adress:
         </label><br>
         <p>8088 Otter Trail Houston TX 77494</p>
+
 
         <label for = "pricePerGallon">Price:
         </label><br>
