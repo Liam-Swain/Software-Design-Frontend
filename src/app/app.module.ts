@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon'
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 import { ClientRegistrationComponent } from './client-registration/client-registration.component';
 import { ClientProfileComponent } from './client-profile/client-profile.component';
 import { FuelQuoteComponent } from './fuel-quote/fuel-quote.component';
@@ -27,6 +29,8 @@ import { FuelHistoryComponent } from './fuel-history/fuel-history.component'
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatSidenavModule
   ],
   providers: [],

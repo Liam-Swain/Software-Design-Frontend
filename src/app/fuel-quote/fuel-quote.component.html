@@ -1,1 +1,35 @@
-<p>fuel-quote works!</p>
+
+<head>
+    <link rel="stylesheet" href="fuel-quote.component.css">
+</head>
+
+<body>
+    <h3>Fuel Quote Form</h3>
+    <form>
+        <label for = "gallons">Gallons requested:
+            </label><br>
+        <input type="number" id="gallons" required = "required" pattern="[1-9]" 
+        title="Only numbers">
+        <br><br>
+        
+        <label for = "deliveryDate">Delivery Date:
+            </label><br>
+        <input type="text" id="deliveryDate" required = "required" pattern="[A-Za-z1-9]" 
+        title=" ">
+        <br><br>
+
+        <label for = "address">Adress:
+        </label><br>
+        <p>8088 Otter Trail Houston TX 77494</p>
+
+        <label for = "pricePerGallon">Price:
+        </label><br>
+        <p>$2.50/gallon</p>
+
+        <label for = "priceTotal">Total Price:
+        </label>
+        <p>$2050</p>
+
+    </form>
+</body>    
+    
