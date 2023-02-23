@@ -1,0 +1,27 @@
+<head>
+    <link rel="stylesheet" href="login.component.css">
+</head>
+
+<body>
+    <h3>Login</h3>
+
+    <form>
+        <label for = "username">Username:
+    </label><br>
+        <input type="text" id="username" required = "required" pattern="[A-Za-z1-9]" 
+        title="Only letters or numbers">
+    <br>
+        <label for = "password">Password:
+    </label><br>
+        <input type="password" id="password" required="required" pattern=.{8,} 
+            title="must be longer than 8 characters" >
+    <br>
+    <br>
+        <button type="submit" 
+            style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77);"> Submit 
+        </button>
+        <br>
+        <a href="http://localhost:4200/client-registration">Need to register? Click here.</a>
+    </form>
+
+</body>
