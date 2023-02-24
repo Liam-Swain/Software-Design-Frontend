@@ -15,6 +15,8 @@ import { FuelQuoteComponent } from './fuel-quote/fuel-quote.component';
 import { FuelHistoryComponent } from './fuel-history/fuel-history.component'
 import { MatCardModule } from "@angular/material/card";
 import { TableModule } from 'primeng/table';
+import { FormsModule } from '@angular/forms'
+import {MatSelectModule} from '@angular/material/select'
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { TableModule } from 'primeng/table';
     MatNativeDateModule,
     MatSidenavModule,
     MatCardModule,
-    TableModule
+    TableModule,
+    FormsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

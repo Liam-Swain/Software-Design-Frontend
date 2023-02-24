@@ -1,1 +1,65 @@
-<p>client-profile works!</p>
+<div style="margin-top: 2%; margin-bottom: 5%">
+    <mat-card style="height: 150px; text-align: center;">
+        <h1 style="margin-top: 2%">Client Registration Form</h1>
+        <p>Please Fill In All Fields</p>
+    </mat-card>
+</div>
+
+
+<div style = "margin-top: 4%; text-align: center">
+    <mat-card style = "width: 28%; height: 55%; margin-left: 36%">
+        <form #login ="ngForm" style = "margin-top: 5%; margin-bottom: 5%" (ngSubmit)="onSubmit(login.value)">
+            <label for = "name" class="required">Full Name:
+        </label><br>
+            <input type="text" id="name" name="name" maxlength=50 required pattern="[A-Za-z]" ngModel
+            title="Only letters">
+        <br><br>
+    
+        <!--Password entry-->
+            <label for = "Address1" class="required">Address 1:
+        </label><br>
+            <input type="text" maxlength="100" id="Address1" name="Address1" required ngModel>
+        <br><br>
+        
+        <label for = "Address2">Address 2:
+        </label><br>
+            <input type="text" maxlength="100" id="Address2" name="Address2" ngModel>
+        <br><br>
+
+        <label for = "city" class="required">City:
+        </label><br>
+            <input type="text" maxlength="100" id="city" name="city" required ngModel>
+        <br><br>
+
+        <label for = "state" class="required">State:
+        </label><br>
+            <mat-select id = "state" name="state" style = "border: 1px solid black;" style="width: 50%" ngModel>
+            <mat-option *ngFor="let state of States" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        <br><br>
+
+        <label for = "zipcode" class="required">Zipcode:
+        </label><br>
+            <input type="text" minlength="5" id="zipcode" name="zipcode" required ngModel>
+        <br><br>
+
+        <!--Submit-->
+            <button mat-raised-button type="submit" value="submit"
+                style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77);"> Submit 
+            </button>
+            <br><br><br>
+            
+        <!--Link to registry page-->
+            <a href="http://localhost:4200/client-registration">Need to register? Click here.</a>
+        </form>
+        <p *ngIf="notFilled" style="color: red">Please Fill Out Requested Fields</p>
+    </mat-card>
+</div>
+
+<style>
+    .required:after {
+      content:" *";
+      color: red;
+    }
+</style>
+

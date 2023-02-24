@@ -1,47 +1,61 @@
-
 <head>
     <link rel="stylesheet" href="fuel-quote.component.css">
 </head>
 
 <body>
-    <h3>Fuel Quote Form</h3>
-    <form>
-        <label for = "gallons">Gallons requested:
-            </label><br>
-        <input type="number" id="gallons" required = "required" pattern="[1-9]" 
-        title="Only numbers">
-        <br><br>
-        
-        <label for = "deliveryDate">Delivery Date:
-            </label><br>
-        <input type="date" required = "required">
-        <br><br>
-            
-            <!--seems I do not need this special date selector as the default is better-->
-            <!--<mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+    <div style="margin-top: 2%; margin-bottom: 5%">
+        <mat-card style="height: 150px; text-align: center;">
+            <h1 style="margin-top: 2%">Fuel Quote Form</h1>
+            <p>Please Fill In All Fields</p>
+        </mat-card>
+    </div>
+    <div>
+        <mat-card style="width: 50%; margin-left: 25%">
+            <form #quote ="ngForm" (ngSubmit)="onSubmit(quote.value)" style = "margin-top: 3%; margin-bottom: 3%">
+                <label for="gallons" class="required">Gallons requested:
+                </label><br>
+                <input type="number" id="gallons" name="gallons" required="required" pattern="[1-9]" title="Only numbers" ngModel>
+                <br><br>
+
+                <label for="deliveryDate" class="required">Delivery Date:
+                </label><br>
+                <input type="date" name="date" required="required" ngModel>
+                <br><br>
+
+                <!--seems I do not need this special date selector as the default is better-->
+                <!--<mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #basicDatepicker></mat-datepicker>
             <br>-->
-        
-        <button type="submit" 
-        style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77);"> Submit 
-        </button>
-        <br><br>
 
-        <!--This will be pulled from Client Info eventually-->
-        <label for = "address">Adress:
-        </label><br>
-        <p>8088 Otter Trail Houston TX 77494</p>
+                <button mat-raised-button type="submit" style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77);">
+                    Submit
+                </button>
+                <br><br>
 
-        <!--This will be calculated when backend is implimented-->
-        <label for = "pricePerGallon">Price:
-        </label><br>
-        <p>$2.50/gallon</p>
-        
-        <!--This will be calculated when backend is implimented-->
-        <label for = "priceTotal">Total Price:
-        </label>
-        <p>$2050</p>
+                <!--This will be pulled from Client Info eventually-->
+                <label for="address">Adress:
+                </label><br>
+                <p>8088 Otter Trail Houston TX 77494</p>
 
-    </form>
-</body>    
-    
+                <!--This will be calculated when backend is implimented-->
+                <label for="pricePerGallon">Price:
+                </label><br>
+                <p>$2.50/gallon</p>
+
+                <!--This will be calculated when backend is implimented-->
+                <label for="priceTotal">Total Price:
+                </label>
+                <p>$2050</p>
+
+            </form>
+            <P *ngIf="notFilled" style = "color: red">Please Fill In All Data</P>
+        </mat-card>
+    </div>
+</body>
+
+<style>
+    .required:after {
+      content:" *";
+      color: red;
+    }
+</style>
