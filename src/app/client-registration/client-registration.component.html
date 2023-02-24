@@ -1,1 +1,43 @@
-<p>client-registration works!</p>
+
+<body>
+    <div style="margin-top: 2%">
+            <h1 style="margin-top: 3%">Register User</h1>
+    </div>
+    
+    <div style = "margin-top: 4%">
+        <mat-card style = "width: 28%; height: 55%; margin-left: 36%">
+            <form #login ="ngForm" style = "margin-top: 5%; margin-bottom: 5%" (ngSubmit)="onSubmit(login.value)">
+                <label for = "username" class="required">Username:
+            </label><br>
+                <input type="text" id="username" name="username" required = "required" pattern="[A-Za-z1-9]" ngModel
+                title="Only letters or numbers">
+            <br><br>
+        
+                <label for = "password" class="required">Password:
+            </label><br>
+                <input type="password" id="password" name="password" required="required" ngModel
+                    title="must be longer than 8 characters" >
+            <br><br>
+
+            <label for = "confirmPassword" class="required">Confirm Password:
+            </label><br>
+                <input type="password" id="confirmPassword" name="confirmPassword" required="required" ngModel
+                    title="must be longer than 8 characters" >
+            <br><br><br>
+                <button mat-raised-button type="submit" value="submit"
+                    style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77);"> Register User 
+                </button>
+                <br><br><br>
+                            </form>
+            <p *ngIf="notFilled" style = "color: red">You Have Not Entered A Username Or Password</p>
+            <p *ngIf="passwordMismatch" style = "color: red">Passwords Do Not Match</p>
+        </mat-card>
+    </div>
+</body>
+
+<style>
+    .required:after {
+      content:" *";
+      color: red;
+    }
+</style>
