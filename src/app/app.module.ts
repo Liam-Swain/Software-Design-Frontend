@@ -17,6 +17,7 @@ import { MatCardModule } from "@angular/material/card";
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms'
 import {MatSelectModule} from '@angular/material/select'
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatSelectModule} from '@angular/material/select'
     MatCardModule,
     TableModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
