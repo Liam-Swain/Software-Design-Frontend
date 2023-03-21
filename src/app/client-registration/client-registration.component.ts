@@ -13,6 +13,7 @@ export class ClientRegistrationComponent implements OnInit{
     this.notFilled = false
     this.passwordMismatch = false;
     console.log(formData);
+    
     if(formData['username'] == '' || formData['password'] == '')
     {
       this.notFilled = true;

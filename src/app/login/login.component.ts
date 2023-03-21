@@ -7,24 +7,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit{
 
-  public notFilled: boolean = false;
-
+  private username: string = '';
+  private password: string = '';
+  public errorString: string = '';
+  
   constructor() {}
-
-
 
   onSubmit(formData: any)
   {
-    this.notFilled = false
-    console.log(formData);
-    if(formData['username'] == '' || formData['password'] == '')
-    {
-      this.notFilled = true;
-    }
+    this.username = formData['username'];
+    this.password = formData['password'];
 
-
+    this.errorString = this.checkLogin();
   }
 
+  //returns error string for when user enters wrong login
+  checkLogin(){
+    if(this.username == '' || this.password == ''){
+      return 'You have not entered a username or password'
+    }
+    // elif statement to check database for matching login info would go here
+    else{
+      return  ''
+    }
+  }
+  
+  // getter function for username and password
+  getLogin(){
+    let loginData = {
+      'username': this.username,
+      'password': this.password
+    };
+
+    return loginData;
+  }
 
 
 
@@ -34,3 +50,4 @@ export class LoginComponent implements OnInit{
   }
 
 }
+

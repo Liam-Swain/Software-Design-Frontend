@@ -6,7 +6,7 @@
     <div style="margin-top: 2%">
             <h1 style="margin-top: 3%">Login</h1>
     </div>
-    
+     <!--Username entry-->
     <div style = "margin-top: 4%">
         <mat-card style = "width: 28%; height: 55%; margin-left: 36%">
             <form #login ="ngForm" style = "margin-top: 5%; margin-bottom: 5%" (ngSubmit)="onSubmit(login.value)">
@@ -32,10 +32,9 @@
             <!--Link to registry page-->
                 <a href="http://localhost:4200/client-registration">Need to register? Click here.</a>
             </form>
-            <p *ngIf="notFilled" style = "color: red">You Have Not Entered A Username Or Password</p>
+            <p style = "color: red">{{errorString}}</p>
         </mat-card>
     </div>
-    <!--Username entry-->
 </body>
 
 <style>
