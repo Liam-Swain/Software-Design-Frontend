@@ -1,7 +1,7 @@
 <div class="page-container" ui-veiw="header" autoscroll="true">
   <header>
     <div style="margin-top: 20px;">
-      <button mat-button class="menu-button" (click)="sidenav.toggle()">
+      <button *ngIf="loggedIn=='true'" mat-button class="menu-button" (click)="sidenav.toggle()">
         <mat-icon style = "color: white;">{{isMenuOpen ? 'menu_open' : 'menu'}}</mat-icon>
       </button>
     </div>

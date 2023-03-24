@@ -35,6 +35,11 @@
             <p *ngIf="notFilled" style = "color: red">You Have Not Entered A Username Or Password</p>
         </mat-card>
     </div>
+    <div *ngIf="displayWrongUser" style="margin-top: 2%; width: 50%; margin-left: 25%;">
+        <mat-card>
+            <p style="color: red">{{wrongUser}}</p>
+        </mat-card>
+    </div>
     <!--Username entry-->
 </body>
 

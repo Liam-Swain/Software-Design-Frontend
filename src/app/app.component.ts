@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'software-design';
   public isMenuOpen: boolean = false;
+  public loggedIn:any = sessionStorage.getItem("loggedIn");
+
 
   showPage() {
     
@@ -16,7 +18,7 @@ export class AppComponent {
   constructor() {}
 
   ngOnInit(): void {
-
+    this.loggedIn = sessionStorage.getItem("loggedIn");
   }
 
 }

@@ -9,16 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class ClientRegistrationComponent implements OnInit{
   public notFilled: boolean = false;
   public passwordMismatch: boolean = false;
-
+  public registeredString: string = "Thank You For Registering!";
   constructor(private http: HttpClient) {};
 
   onSubmit(formData: any)
   {
     this.notFilled = false
     this.passwordMismatch = false;
-    console.log(formData);
-    console.log(formData['password']);
-    console.log(formData['confirmedPassword']);
+
     if(formData['username'] == '' || formData['password'] == '')
     {
       this.notFilled = true;
@@ -31,14 +29,19 @@ export class ClientRegistrationComponent implements OnInit{
     {
       this.passwordMismatch = false;
 
-      this.http.post("http://localhost:9196/softwaredesign/registerUser", formData).subscribe(res => {
-        console.log(res);
-      })
+      var request = {
+        "user" : formData['username'],
+        "password" : formData['password'],
+        "active" : "Disabled"
+      };
+
+      console.log(request);
+
+      this.http.post("http://localhost:9196/softwaredesign/insertClient", request).subscribe(res => {
+        
+      });
       
     }
-
-
-
 
   }
 
