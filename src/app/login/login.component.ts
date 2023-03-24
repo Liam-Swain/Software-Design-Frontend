@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit{
       else{
         if(response['active'] == "Disabled"){
           window.location.replace("/client-profile");
+          sessionStorage.setItem("user", request['user']);
         }
         else if(response['active'] == "Enabled"){
           window.location.replace("/fuel-history");
