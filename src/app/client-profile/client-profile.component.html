@@ -34,7 +34,7 @@
         <label for = "state" class="required">State:
         </label><br>
             <mat-select id = "state" name="state" style = "border: 1px solid black;" style="width: 50%" ngModel>
-            <mat-option *ngFor="let state of States" [value]="state">{{state}}</mat-option>
+            <mat-option *ngFor="let state of States" [value]="state">{{state['name']}}</mat-option>
             </mat-select>
         <br><br>
 
