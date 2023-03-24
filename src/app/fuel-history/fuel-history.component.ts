@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,165 +10,49 @@ export class FuelHistoryComponent implements OnInit{
 
   public response: any;
   public cols: any;
+  public user = sessionStorage.getItem("user");
+  public noHistory: number = 0;
 
   paginate(event: any){
 
   }
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
+  
+
+  initFuelHistory(){
+
+    var request = {
+      "username" : this.user
+    };
+
+    this.http.post("http://localhost:9196/softwaredesign/quoteHistory/user", request).subscribe(res => {
+
+      this.response = res;
+      this.response = this.response.fuelQuotesFormList;
+      console.log(this.response);
+      if(this.response.length == 0){
+        this.noHistory = 1;
+      }
+      else{
+        this.noHistory = 2;
+      }
+    });
+  }
 
   ngOnInit(): void {
-    this.response = [
-      {
-        'gallons': 10, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 100,
-        'total': 150,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 13, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 130,
-        'total': 180,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 15, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 150,
-        'total': 200,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 25, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 250,
-        'total': 300,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-      {
-        'gallons': 20, 
-        'address': '123 street',
-        'date': 'Janurary 1st',
-        'price': 200,
-        'total': 250,
-        'user': 'Liam Swain'
-      },
-    ]
+    this.initFuelHistory();
 
     this.cols = [
-      {field: 'gallons', header: 'Gallons Requested'},
-      {field: 'address', header: 'Delivery Address'},
-      {field: 'date', header: 'Delivery Date'},
-      {field: 'price', header: 'Suggested Price'},
-      {field: 'total', header: 'Total Price'},
+      {field: 'gallonsRequested', header: 'Gallons Requested'},
+      {field: 'deliveryAddress', header: 'Delivery Address'},
+      {field: 'deliveryDate', header: 'Delivery Date'},
+      {field: 'suggestedPrice', header: 'Suggested Price'},
+      {field: 'suggestedPrice', header: 'Total Price'},
       {field: 'user', header: 'User'}
     ]
 
-    console.log(this.response);
-    console.log(this.cols);
 
   }
 

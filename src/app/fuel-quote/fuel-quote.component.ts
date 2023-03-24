@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,7 +10,7 @@ export class FuelQuoteComponent implements OnInit{
 
   public notFilled: boolean = false;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   onSubmit(formData: any)
   {
@@ -20,6 +21,11 @@ export class FuelQuoteComponent implements OnInit{
     {
       this.notFilled = true;
     }
+
+    this.http.post("http://localhost:9196/softwaredesign/quoteHistory/user", formData).subscribe(res => {
+    console.log(res);
+
+  });
 
   }
 

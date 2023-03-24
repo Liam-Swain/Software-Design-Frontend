@@ -6,7 +6,7 @@
 </div>
 
 
-<div style = "margin-top: 2%; margin-bottom: 5%">
+<div style = "margin-top: 2%; margin-bottom: 5%" *ngIf="noHistory==2">
     <mat-card>
         <p-table [columns]="cols" [value]="response" [scrollable]="true"  styleClass="p-datatable-gridlines" [showCurrentPageReport]="true" [paginator]="true" [rows]="15" (onPage)="paginate($event)" scrollHeight="400px" scrollWidth="400px" [resizableColumns]="true" [autoLayout]="true">
             <ng-template pTemplate="caption" style = "margin-bottom: 2%;">
@@ -27,5 +27,13 @@
                 </tr>
             </ng-template>
         </p-table>
+    </mat-card>
+</div>
+
+<div *ngIf="noHistory==1" style = "text-align: center;">
+    <mat-card>
+        <p style = "color: red">
+            You Have No Fuel Quote History
+        </p>
     </mat-card>
 </div>
