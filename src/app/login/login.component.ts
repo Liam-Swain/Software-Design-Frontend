@@ -11,37 +11,53 @@ export class LoginComponent implements OnInit{
   private username: string = '';
   private password: string = '';
   public errorString: string = '';
-  private userObject: any;
+  private userObject: any = null;
   
   constructor(private http: HttpClient) {};
 
-  onSubmit(formData: any)
-  {
+  async onSubmit(formData: any){
     this.username = formData['username'];
     this.password = formData['password'];
 
-    this.errorString = this.checkLogin(formData);
+    this.errorString = await this.checkLogin(formData);
+    this.userObject = await this.getLoggedInUser();
+    this.errorString = await this.getErrorString();
 
   }
 
-  //returns error string for when user enters wrong login
-  checkLogin(formData: any){
-    this.http.post("http://localhost:9196/softwaredesign/verifyLogin", formData).subscribe(res => {
-        this.userObject = res;
-        console.log(this.userObject);
-      })
+  async getErrorString(){
+    console.log(this.userObject);
     if(this.username == '' || this.password == ''){
+      console.log('3');
       return 'You have not entered a username or password'
     }
-    else if(this.userObject){
-      return 'incorrect user or password'
+    else if(this.userObject == null){
+      console.log('3');
+      return 'logged in'
     }
     // elif statement to check database for matching login info would go here
     else{
-      return  'logged in'
+      console.log('3');
+      return 'incorrect username or password'
     }
   }
+  async getLoggedInUser(){
+    console.log("2")
+    console.log(this.userObject);
+    return this.http.get("http://localhost:9196/softwaredesign/getLoggedInUser");
+  }
+
+  //returns error string for when user enters wrong login
+  async checkLogin(formData: any){
+        this.http.post("http://localhost:9196/softwaredesign/verifyLogin", formData).subscribe( async res =>{
+        this.userObject = res;
+        
+      })
+      console.log("1")
+      return this.userObject;
+  }
   
+
   // getter function for username and password
   getLogin(){
     let loginData = {
