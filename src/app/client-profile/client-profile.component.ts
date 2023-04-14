@@ -8,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientProfileComponent implements OnInit{
   public notFilled: boolean = false;
+  loggedIn = sessionStorage.getItem("loggedIn");
+  public alreadyRegistered: any;
+  public change: boolean = false;
+  public currentUser: any;
+
   public States = [
     {
         "name": "Alabama",
@@ -219,7 +224,57 @@ export class ClientProfileComponent implements OnInit{
 
   ngOnInit(): void {
 
+    if(this.loggedIn == 'true'){
+        this.alreadyRegistered = true;
+      }
+      else{
+        this.alreadyRegistered = false;
+      }
+  
+      this.currentUser = sessionStorage.getItem("userInfo");
+      this.currentUser = JSON.parse(this.currentUser);
+      console.log(this.currentUser);    
+
   }
+
+    updateUser(formData: any) {
+        var allBlank = true;
+        console.log(formData);
+        if (formData['password'] != formData['confirmPassword']) {
+            alert("Passwords Are Not The Same");
+        }
+        else {
+            for (var i in formData) {
+                if(formData['password'] != ''){
+                    delete formData['confirmPassword'];
+                }
+                if (formData[i] == '' || formData[i] == undefined) {
+                    formData[i] = this.currentUser[i];
+                    console.log(i);
+                }
+                else {
+                    allBlank = false;
+                }
+            }
+            console.log(allBlank);
+            if (!allBlank) {
+                formData['user'] = sessionStorage.getItem("user");
+                if(formData['state'] != '' && formData['state'].length != 2)
+                    formData['state'] = formData['state']['abbreviation'];
+                formData['active'] = 'Enabled';
+                console.log(formData['state']);
+                this.http.put("http://localhost:9196/softwaredesign/updateClient", formData).subscribe(res => {
+                    console.log(res);
+                    if (res != null) {
+                        alert("Updated Complete");
+                        window.location.reload();
+                        sessionStorage.setItem("userInfo", JSON.stringify(res));
+                    }
+                });
+            }
+        }
+
+    }
 
 
   onSubmit(formData: any)
@@ -239,6 +294,7 @@ export class ClientProfileComponent implements OnInit{
           alert("Thank You For Creating Your Profile");
           sessionStorage.setItem("loggedIn", "true");
           window.location.reload();
+          sessionStorage.setItem("userInfo", JSON.stringify(res));
         }
       });
     }

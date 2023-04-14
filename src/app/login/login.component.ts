@@ -42,10 +42,13 @@ export class LoginComponent implements OnInit{
         if(response['active'] == "Disabled"){
           window.location.replace("/client-profile");
           sessionStorage.setItem("user", request['user']);
+          sessionStorage.setItem("userInfo", JSON.stringify(response));
         }
         else if(response['active'] == "Enabled"){
           window.location.replace("/fuel-history");
           sessionStorage.setItem("loggedIn", "true");
+          sessionStorage.setItem("user", request['user']);
+          sessionStorage.setItem("userInfo", JSON.stringify(response));
         }
       }
     });

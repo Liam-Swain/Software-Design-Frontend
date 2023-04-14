@@ -1,65 +1,108 @@
 <div style="margin-top: 2%; margin-bottom: 5%">
     <mat-card style="height: 150px; text-align: center;">
         <h1 style="margin-top: 2%">Client Profile Management Form</h1>
-        <p>Please Fill In All Fields</p>
+        <p *ngIf="!alreadyRegistered">Please Fill In All Fields</p>
     </mat-card>
 </div>
 
 
-<div style = "margin-top: 4%; text-align: center">
-    <mat-card style = "width: 28%; height: 55%; margin-left: 36%">
-        <form #login ="ngForm" style = "margin-top: 5%; margin-bottom: 5%" (ngSubmit)="onSubmit(login.value)">
-            <label for = "name" class="required">Full Name:
-        </label><br>
+<div *ngIf="!alreadyRegistered" style="margin-top: 4%; text-align: center">
+    <mat-card style="width: 28%; height: 55%; margin-left: 36%">
+        <form #login="ngForm" style="margin-top: 5%; margin-bottom: 5%" (ngSubmit)="onSubmit(login.value)">
+            <label for="name" class="required">Full Name:
+            </label><br>
             <input type="text" id="name" name="name" maxlength=50 required pattern="[A-Za-z]" ngModel
-            title="Only letters">
-        <br><br>
-    
-        <!--Password entry-->
-            <label for = "Address1" class="required">Address 1:
-        </label><br>
+                title="Only letters">
+            <br><br>
+
+            <!--Password entry-->
+            <label for="Address1" class="required">Address 1:
+            </label><br>
             <input type="text" maxlength="100" id="Address1" name="address1" required ngModel>
-        <br><br>
-        
-        <label for = "Address2">Address 2:
-        </label><br>
+            <br><br>
+
+            <label for="Address2">Address 2:
+            </label><br>
             <input type="text" maxlength="100" id="Address2" name="address2" ngModel>
-        <br><br>
+            <br><br>
 
-        <label for = "city" class="required">City:
-        </label><br>
+            <label for="city" class="required">City:
+            </label><br>
             <input type="text" maxlength="100" id="city" name="city" required ngModel>
-        <br><br>
+            <br><br>
 
-        <label for = "state" class="required">State:
-        </label><br>
-            <mat-select id = "state" name="state" style = "border: 1px solid black;" style="width: 50%" ngModel>
-            <mat-option *ngFor="let state of States" [value]="state">{{state['name']}}</mat-option>
+            <label for="state" class="required">State:
+            </label><br>
+            <mat-select id="state" name="state" style="border: 1px solid black;" style="width: 50%" ngModel>
+                <mat-option *ngFor="let state of States" [value]="state">{{state['name']}}</mat-option>
             </mat-select>
-        <br><br>
+            <br><br>
 
-        <label for = "zipcode" class="required">Zipcode:
-        </label><br>
+            <label for="zipcode" class="required">Zipcode:
+            </label><br>
             <input type="text" minlength="5" id="zipcode" name="zipcode" required ngModel>
-        <br><br>
+            <br><br>
 
-        <!--Submit-->
+            <!--Submit-->
             <button mat-raised-button type="submit" value="submit"
-                style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77);"> Submit 
+                style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77);"> Submit
             </button>
             <br><br><br>
-            
-        <!--Link to registry page-->
-            <a href="http://localhost:4200/client-registration">Need to register? Click here.</a>
+            <!--Link to registry page-->
         </form>
         <p *ngIf="notFilled" style="color: red">Please Fill Out Requested Fields</p>
     </mat-card>
 </div>
 
+<div *ngIf='alreadyRegistered' style="text-align: center">
+    <div>
+        <mat-card style="width: 100%; height: 55%; margin-left: 0%">
+            <form #updateForm="ngForm" style="margin-top: 5%; margin-bottom: 5%" (ngSubmit)="updateUser(updateForm.value)">
+                <div style="float:left; margin-right: 15%;">
+                    <label style="display: block">Full Name</label>
+                    <input name="name" type="text" value="{{currentUser['name']}}" placeholder="{{currentUser['name']}}"
+                        style="display: block" style="margin-bottom: 10%" required ngModel>
+                    <label style="display: block">Address</label>
+                    <input name="address1" type="text" value="{{currentUser['address1']}}"
+                        placeholder="{{currentUser['address1']}}" style="display: block" style="margin-bottom: 10%" ngModel>
+                </div>
+                <div style="float:left; margin-right: 15%;">
+                    <label style="display: block">Address 2</label>
+                    <input name="address2" type="text" value="{{currentUser['address2']}}"
+                        placeholder="{{currentUser['address2']}}" style="display: block" style="margin-bottom: 10%" ngModel>
+                    <label style="display: block">City</label>
+                    <input name="city" type="text" value="{{currentUser['city']}}" placeholder="{{currentUser['city']}}"
+                        style="display: block" style="margin-bottom: 10%" ngModel>
+                </div>
+                <div style="float:left; margin-right: 15%;">
+                    <label style="display: block">State</label>
+                    <mat-select id="state" name="state" style="border: 1px solid black; margin-bottom: 10%; display: block" style="width: 50%" ngModel>
+                        <mat-option *ngFor="let state of States" [value]="state">{{state['name']}}</mat-option>
+                    </mat-select>
+                    <label style="display: block">Zipcode</label>
+                    <input name="zipcode" type="text" value="{{currentUser['zipcode']}}"
+                        placeholder="{{currentUser['zipcode']}}" style="display: block" style="margin-bottom: 10%" ngModel>
+                </div>
+                <div style="float:left; margin-right: 15%;">
+                    <label style="display: block">New Password</label>
+                    <input name="password" type="password" placeholder="New Password" style="display: block"
+                        style="margin-bottom: 10%" ngModel>
+                    <label style="display: block">Confirm Password</label>
+                    <input name="confirmPassword" type="password" placeholder="Confirm Password" style="display: block"
+                        style="margin-bottom: 10%" ngModel>
+                </div>
+                <button mat-raised-button type="submit" value="submit"
+                    style="background-color: rgb(81, 240, 81); border-color: rgb(81, 240, 77); margin-top: 2%;">
+                    Update User
+                </button>
+            </form>
+        </mat-card>
+    </div>
+</div>
+
 <style>
     .required:after {
-      content:" *";
-      color: red;
+        content: " *";
+        color: red;
     }
 </style>
-
