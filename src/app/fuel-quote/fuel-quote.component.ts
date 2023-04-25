@@ -51,9 +51,19 @@ export class FuelQuoteComponent implements OnInit {
       this.notFilled = true;
     }
 
-    this.http.post("http://localhost:9196/softwaredesign/quoteHistory/user", formData).subscribe(res => {
-      console.log(res);
+    var request = {
+      'gallonsRequested' : formData['gallons'],
+      'deliveryAddress': this.currentUser['address1'],
+      'deliveryDate' : formData['date'],
+      'suggestedPrice': this.response['suggestedPrice'],
+      'totalAmount': this.response['totalPrice'],
+      'user': this.currentUser['user']
+    }
 
+    this.http.post("http://localhost:9196/softwaredesign/insertQuote", request).subscribe(res => {
+      console.log(res);
+      alert("Quote Saved");
+      window.location.reload();
     });
 
   }

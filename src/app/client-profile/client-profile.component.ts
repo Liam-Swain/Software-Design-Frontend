@@ -12,6 +12,7 @@ export class ClientProfileComponent implements OnInit{
   public alreadyRegistered: any;
   public change: boolean = false;
   public currentUser: any;
+  public displayError: boolean = false;
 
   public States = [
     {
@@ -238,6 +239,7 @@ export class ClientProfileComponent implements OnInit{
   }
 
     updateUser(formData: any) {
+        this.displayError = false;
         var allBlank = true;
         console.log(formData);
         if (formData['password'] != formData['confirmPassword']) {
@@ -270,6 +272,10 @@ export class ClientProfileComponent implements OnInit{
                         window.location.reload();
                         sessionStorage.setItem("userInfo", JSON.stringify(res));
                     }
+                    else
+                    {
+                        this.displayError = true;
+                    }
                 });
             }
         }
@@ -279,6 +285,7 @@ export class ClientProfileComponent implements OnInit{
 
   onSubmit(formData: any)
   {
+    this.displayError = false;
     this.notFilled = false;
     console.log(formData);
 
@@ -295,6 +302,9 @@ export class ClientProfileComponent implements OnInit{
           sessionStorage.setItem("loggedIn", "true");
           window.location.reload();
           sessionStorage.setItem("userInfo", JSON.stringify(res));
+        }
+        else{
+            this.displayError = true;
         }
       });
     }
