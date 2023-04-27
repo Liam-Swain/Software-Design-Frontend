@@ -21,4 +21,11 @@ export class AppComponent {
     this.loggedIn = sessionStorage.getItem("loggedIn");
   }
 
+  signOut(){
+    window.location.replace("/login");
+    sessionStorage.setItem("loggedIn", "false");
+    sessionStorage.setItem("user", "");
+    sessionStorage.setItem("userInfo", "");
+  }
+
 }
