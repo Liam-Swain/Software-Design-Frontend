@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DatePipe, formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-fuel-quote',
@@ -12,9 +13,12 @@ export class FuelQuoteComponent implements OnInit {
   public gotPrice: boolean = false;
   public currentUser: any;
   public displayError: boolean = false;
+  public currentDate: any = new Date();
   response: any;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
+
+  
 
   getPrice() {
     this.displayError = false;
@@ -22,7 +26,7 @@ export class FuelQuoteComponent implements OnInit {
     var date: any = document.getElementById("date");
     gallon = gallon.value;
     date = date.value;
-    if (gallon == "" || gallon == "" || date == "" || date == "") {
+    if (gallon == "" || gallon == "" || date == "" || date == "" || gallon < 1) {
       this.displayError = true;
     }
     else {
@@ -46,10 +50,6 @@ export class FuelQuoteComponent implements OnInit {
   onSubmit(formData: any) {
     this.notFilled = false;
     console.log(formData);
-
-    if (formData['gallons'] == '' || formData['date'] == '') {
-      this.notFilled = true;
-    }
 
     var request = {
       'gallonsRequested' : formData['gallons'],
@@ -79,6 +79,8 @@ export class FuelQuoteComponent implements OnInit {
     this.currentUser = sessionStorage.getItem("userInfo");
     this.currentUser = JSON.parse(this.currentUser);
     console.log(this.currentUser);
+    this.currentDate = formatDate(this.currentDate, "yyyy-MM-dd", "en-US");
+    console.log(this.currentDate);
   }
 
 
