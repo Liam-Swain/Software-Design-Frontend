@@ -49,7 +49,7 @@ export class FuelHistoryComponent implements OnInit{
       {field: 'deliveryAddress', header: 'Delivery Address'},
       {field: 'deliveryDate', header: 'Delivery Date'},
       {field: 'suggestedPrice', header: 'Suggested Price'},
-      {field: 'suggestedPrice', header: 'Total Price'},
+      {field: 'totalAmount', header: 'Total Price'},
       {field: 'user', header: 'User'}
     ]
 

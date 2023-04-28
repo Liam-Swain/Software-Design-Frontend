@@ -38,8 +38,15 @@ export class ClientRegistrationComponent implements OnInit{
       console.log(request);
 
       this.http.post("http://localhost:9196/softwaredesign/insertClient", request).subscribe(res => {
-        alert("Client Created!");
-        window.location.replace("/login");
+
+        var response: any = res;
+        if(response == null || response == undefined){
+          alert("username already exists")
+        }
+        else{
+          window.location.replace("/login");
+          alert("Client Created!");
+        }
       });
       
     }
